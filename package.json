@@ -1,0 +1,18 @@
+{
+    "name": "samlib-parser-js",
+    "version": "0.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "karma start"
+    },
+    "author": "iVariable <ivariable@gmail.com>",
+    "license": "MIT",
+    "devDependencies": {
+        "karma": "0.12.*",
+        "karma-mocha": "0.1.*",
+        "chai": "^1.9.2",
+        "mocha": "1.*",
+        "requirejs": "2.1.*"
+    }
+}
