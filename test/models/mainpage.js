@@ -3,12 +3,12 @@ define(['mainPage', "underscore"], function (MainPage, _) {
     describe("AuthorIndex tests", function () {
 
         it("Can be lazily created", function () {
-            var mainpage = MainPage.MainPage('fixtures/mainpage.html', false);
+            var mainpage = MainPage('fixtures/mainpage.html', false);
             expect(mainpage.ready.state()).to.be.equal('pending');
         })
 
         it('Could have different custom properties', function () {
-            var mainpage = MainPage.MainPage('fixtures/mainpage.html', false);
+            var mainpage = MainPage('fixtures/mainpage.html', false);
             expect(mainpage.info()).not.to.have.property('test');
             mainpage.info({test: "Hello"});
             expect(mainpage.info().test).to.be.equal('Hello');
@@ -21,7 +21,7 @@ define(['mainPage', "underscore"], function (MainPage, _) {
         });
 
         it("Should correctly parse general information", function(done){
-            var mainpage = MainPage.MainPage('fixtures/mainpage.html');
+            var mainpage = MainPage('fixtures/mainpage.html');
 
             mainpage.ready.done(function(){
 

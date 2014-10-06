@@ -6,12 +6,12 @@ define(['book', "underscore"], function (Book, _) {
     describe("Book model tests", function () {
 
         it("Can be lazily created", function () {
-            var book = Book.Book('fixtures/book.html', false);
+            var book = Book('fixtures/book.html', false);
             expect(book.ready.state()).to.be.equal('pending');
         })
 
         it('Could have different custom properties', function () {
-            var book = Book.Book('fixtures/book_series.html', false);
+            var book = Book('fixtures/book_series.html', false);
             expect(book.info()).not.to.have.property('test');
             book.info({test: "Hello"});
             expect(book.info().test).to.be.equal('Hello');
@@ -47,7 +47,7 @@ define(['book', "underscore"], function (Book, _) {
             describe("Book tests with " + fixtureUrl + " fixture", function () {
 
                 it("Should parse general book information", function (done) {
-                    var book = Book.Book(fixtureUrl);
+                    var book = Book(fixtureUrl);
                     book.ready.done(function () {
 
                         expect(book.info().title).to.be.equal(shouldBe.title);

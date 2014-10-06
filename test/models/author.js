@@ -5,12 +5,12 @@ define(['author', 'underscore'], function(Author, _){
     describe('Author model tests', function(){
 
         it("Can be lazily created", function(){
-            var author = Author.Author('fixtures/author.html', false);
+            var author = Author('fixtures/author.html', false);
             expect(author.ready.state()).to.be.equal('pending');
         })
 
         it('Could have different custom properties', function(){
-            var author = Author.Author('fixtures/author.html', false);
+            var author = Author('fixtures/author.html', false);
             expect(author.info()).not.to.have.property('test');
             author.info({test: "Hello"});
             expect(author.info().test).to.be.equal('Hello');
@@ -61,7 +61,7 @@ define(['author', 'underscore'], function(Author, _){
             describe("Tests with "+fixtureUrl+" fixtures", function(){
 
                 it("Should correctly parse general author information", function(done){
-                    var author = Author.Author(fixtureUrl);
+                    var author = Author(fixtureUrl);
                     author.ready.done(function(){
                         var info = author.info();
 

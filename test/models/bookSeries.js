@@ -6,12 +6,12 @@ define(['bookSeries'], function (BookSeries) {
     describe("BookSeries model tests", function () {
 
         it("Can be lazily created", function () {
-            var bookSeries = BookSeries.BookSeries('fixtures/book_series.html', false);
+            var bookSeries = BookSeries('fixtures/book_series.html', false);
             expect(bookSeries.ready.state()).to.be.equal('pending');
         })
 
         it('Could have different custom properties', function () {
-            var bookSeries = BookSeries.BookSeries('fixtures/book_series.html', false);
+            var bookSeries = BookSeries('fixtures/book_series.html', false);
             expect(bookSeries.info()).not.to.have.property('test');
             bookSeries.info({test: "Hello"});
             expect(bookSeries.info().test).to.be.equal('Hello');
@@ -24,7 +24,7 @@ define(['bookSeries'], function (BookSeries) {
         });
 
         it("Should correctly parse general information", function (done) {
-            var bookSeries = BookSeries.BookSeries('fixtures/book_series.html');
+            var bookSeries = BookSeries('fixtures/book_series.html');
             bookSeries.ready.done(function () {
                 var shouldBe = {
                     authorName: "Горъ Василий",
