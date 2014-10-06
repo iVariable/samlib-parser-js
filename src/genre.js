@@ -1,12 +1,12 @@
-define(['jquery', 'underscore', 'author'], function ($, _, Author) {
+define(['jquery', 'underscore'], function ($, _) {
     return {
-        AuthorIndex: function (authorIndexUrl, immediateLoad) {
+        Genre: function (genreUrl, immediateLoad) {
             immediateLoad = _(immediateLoad).isUndefined()?true:immediateLoad;
 
             var ready = $.Deferred();
 
             var result = {
-                url: authorIndexUrl,
+                url: genreUrl,
                 ready: ready,
                 pageContent: '',
                 _info: {},
@@ -20,31 +20,8 @@ define(['jquery', 'underscore', 'author'], function ($, _, Author) {
                     })
                 },
                 parse: function (pageContent) {
-                    var _this = this;
                     this.pageContent = pageContent;
-
-                    var authorsRe = /<DL><a href=([^]+?)>([^]+?)<\/a> "([^]+?)"\(([\d]*?)k,([^]+?)\)/gi;
-                    var authors = [];
-                    pageContent.replace(authorsRe, function(match, link, name, announce, size, booksCount){
-
-                        var author = new Author.Author('http://samlib.ru'+link, false);
-
-                        author.info({
-                            name: name,
-                            totalBooks: booksCount,
-                            totalBookSize: size,
-                            description: announce
-                        })
-
-                        authors.push(author);
-
-                        return match;
-                    });
-
-                    this.info({
-                        authors: authors
-                    });
-
+                    //TODO: standalone parsing
                     ready.resolve(this);
                 },
 

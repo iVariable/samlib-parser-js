@@ -28,7 +28,7 @@ define(['authorIndex', "underscore"], function (AuthorIndex, _) {
 
         _(tests).each(function (shouldBe, fixtureUrl) {
 
-            describe("Book tests with " + fixtureUrl + " fixture", function () {
+            describe("Tests with " + fixtureUrl + " fixture", function () {
 
                 it("Should parse author index pages", function (done) {
                     var authorIndex = AuthorIndex.AuthorIndex(fixtureUrl);
