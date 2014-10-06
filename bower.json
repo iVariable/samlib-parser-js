@@ -1,27 +1,29 @@
 {
-  "name": "samlib-parser-js",
-  "version": "0.0.1",
-  "authors": [
-    "iVariable <ivariable@gmail.com>"
-  ],
-  "moduleType": [
-    "amd"
-  ],
-  "license": "MIT",
-  "private": true,
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "jquery": "2.1.*",
-    "underscore": "1.7.*",
-    "underscore.string": "2.3.*",
-    "chai": "^1.9.2",
-    "mocha": "1.*",
-    "requirejs": "2.1.*"
-  }
+    "name": "samlib-parser-js",
+    "version": "0.0.1",
+    "authors": [
+        "iVariable <ivariable@gmail.com>"
+    ],
+    "moduleType": [
+        "amd"
+    ],
+    "license": "MIT",
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "jquery": "2.1.*",
+        "underscore": "1.7.*",
+        "underscore.string": "2.3.*",
+        "requirejs": "2.1.*"
+    },
+    "devDependences": {
+        "chai": "^1.9.2",
+        "mocha": "1.*"
+    }
 }
