@@ -21,7 +21,8 @@ require([
     'underscore.string',
     'test/models/author',
     'test/models/bookSeries',
-    'test/models/book'
+    'test/models/book',
+    'test/models/authorIndex'
 ],function(_, _str){
     _.mixin(_str.exports());
     if (window.mochaPhantomJS) { mochaPhantomJS.run(); }

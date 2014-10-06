@@ -55,7 +55,7 @@ define(['book', "underscore"], function (Book, _) {
                         expect(book.info().literaryForm).to.be.equal(shouldBe.literaryForm);
                         expect(book.info().genre).to.be.equal(shouldBe.genre);
                         expect(book.info().group).to.be.equal(shouldBe.group);
-                        
+
                         expect(book.info().content).to.have.length(shouldBe.contentLength)
                         done();
                     });
