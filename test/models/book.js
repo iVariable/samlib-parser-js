@@ -1,7 +1,7 @@
 /**
  * Created by vladimirsavenkov on 05/10/14.
  */
-define(['book'], function (Book) {
+define(['book', "underscore"], function (Book, _) {
 
     describe("Book model tests", function () {
 
@@ -21,6 +21,48 @@ define(['book'], function (Book) {
             book.info({}, true);
             expect(book.info()).not.to.have.property('test');
             expect(book.info()).not.to.have.property('test2');
+        });
+
+        var tests = {
+            "fixtures/book_small.html": {
+                title: "Подписка на 6-го Шамана",
+                contentLength: 8026,
+                literaryForm: "Глава",
+                genre: "Фэнтези",
+                description: "Информация о подписке на 6-го Шамана. Прошу обратить внимание -- текст начнет писаться не ранее августа, так что решайте сами, когда хотите присоедениться к проекту.",
+                group: "Мир Барлионы"
+            },
+            "fixtures/book_big.html": {
+                title: "Путь Шамана. Шаг 1: Начало",
+                contentLength: 567629 ,
+                literaryForm: "Роман",
+                genre: "Фэнтези",
+                description: 'Первая книга про жизнь Шамана в Барлионе (Май 2013 года).  <dd> Приобрести бумажную книгу можно   <a href="http://www.labirint.ru/books/390127/">http://www.labirint.ru/books/390127/</a>  <dd> Электронный вариант книги: <a href="http://www.litres.ru/vasiliy-mahanenko/barliona/">Магазин электронных книги Литрес</a>',
+                group: "Мир Барлионы"
+            }
+        }
+
+        _(tests).each(function (shouldBe, fixtureUrl) {
+
+            describe("Book tests with " + fixtureUrl + " fixture", function () {
+
+                it("Should parse general book information", function (done) {
+                    var book = Book.Book(fixtureUrl);
+                    book.ready.done(function () {
+
+                        expect(book.info().title).to.be.equal(shouldBe.title);
+                        expect(book.info().description).to.be.equal(shouldBe.description);
+                        expect(book.info().literaryForm).to.be.equal(shouldBe.literaryForm);
+                        expect(book.info().genre).to.be.equal(shouldBe.genre);
+                        expect(book.info().group).to.be.equal(shouldBe.group);
+                        
+                        expect(book.info().content).to.have.length(shouldBe.contentLength)
+                        done();
+                    });
+                });
+
+            })
+
         });
 
     })
