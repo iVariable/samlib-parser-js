@@ -9,24 +9,20 @@ requirejs.config({
         'underscore.string': "../bower_components/underscore.string/dist/underscore.string.min",
         'text': '../bower_components/requirejs-text/text'
     },
-    shim: {
-        'underscore': {
-            deps: ['underscore.string']
-        }
+    deps: ['underscore', 'underscore.string'],
+    callback: function(_, _str){
+        _.mixin(_str.exports());
     }
 });
 
 require([
-    'underscore', 'underscore.string',
-
     'test/models/author',
     'test/models/bookSeries',
     'test/models/book',
     'test/models/authorIndex',
-    'test/models/mainpage'
+    'test/models/mainpage',
+    'test/models/samlib'
 ], function (_, _str) {
-    _.mixin(_str.exports());
-
     if (window.mochaPhantomJS) {
         mochaPhantomJS.run();
     } else {

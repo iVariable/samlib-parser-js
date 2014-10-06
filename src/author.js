@@ -1,3 +1,5 @@
+'use strict';
+
 define(['jquery', 'bookSeries', 'underscore'], function ($, BookSeries, _) {
 
     return function (authorUrl, immediateLoad) {
@@ -25,7 +27,7 @@ define(['jquery', 'bookSeries', 'underscore'], function ($, BookSeries, _) {
                     _this.parse(resultAsString);
                 }).fail(function (xhr) {
                     ready.reject(xhr);
-                })
+                });
                 return this.ready;
             },
 
@@ -102,7 +104,7 @@ define(['jquery', 'bookSeries', 'underscore'], function ($, BookSeries, _) {
 
                 this.info({
                     bookSeries: bookSeries
-                })
+                });
 
                 ready.resolve(this);
             },

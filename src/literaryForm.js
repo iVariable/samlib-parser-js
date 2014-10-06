@@ -1,3 +1,5 @@
+'use strict';
+
 define(['jquery', 'underscore'], function ($, _) {
     return function (literaryFormUrl, immediateLoad) {
         immediateLoad = _(immediateLoad).isUndefined() ? true : immediateLoad;

@@ -1,3 +1,5 @@
+'use strict';
+
 define(['jquery', 'underscore', 'book'], function ($, _, Book) {
     return function (bookSeriesUrl, immediateLoad) {
         var regExps = {

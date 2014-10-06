@@ -1,3 +1,5 @@
+'use strict';
+
 define(['jquery', 'underscore', 'author'], function ($, _, Author) {
     return function (authorIndexUrl, immediateLoad) {
         immediateLoad = _(immediateLoad).isUndefined() ? true : immediateLoad;
@@ -16,10 +18,9 @@ define(['jquery', 'underscore', 'author'], function ($, _, Author) {
                     _this.parse(resultAsString);
                 }).fail(function (xhr) {
                     ready.reject(xhr);
-                })
+                });
             },
             parse: function (pageContent) {
-                var _this = this;
                 this.pageContent = pageContent;
 
                 var authorsRe = /<DL><a href=([^]+?)>([^]+?)<\/a> "([^]+?)"\(([\d]*?)k,([^]+?)\)/gi;
@@ -33,7 +34,7 @@ define(['jquery', 'underscore', 'author'], function ($, _, Author) {
                         totalBooks: booksCount,
                         totalBookSize: size,
                         description: announce
-                    })
+                    });
 
                     authors.push(author);
 
@@ -55,8 +56,8 @@ define(['jquery', 'underscore', 'author'], function ($, _, Author) {
                         this._info = data;
                     } else {
                         _.extend(this._info, data);
-                    }
-                }
+                    };
+                };
                 return this._info;
             }
         };
@@ -64,7 +65,7 @@ define(['jquery', 'underscore', 'author'], function ($, _, Author) {
 
         if (immediateLoad) {
             result.load();
-        }
+        };
 
         return result;
     };

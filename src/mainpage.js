@@ -1,3 +1,5 @@
+'use strict';
+
 define(
     ['jquery', 'underscore', 'authorIndex', 'literaryForm', 'genre'],
     function ($, _, AuthorIndex, LiteraryForm, Genre) {
