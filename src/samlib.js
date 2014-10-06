@@ -1,99 +1,123 @@
 'use strict';
 
 define(
-    ['jquery', 'underscore', 'mainpage', 'authorIndex', 'literaryForm', 'genre'],
-    function ($, _, MainPage, AuthorIndex, LiteraryForm, Genre) {
-        return function (mainPageUrl, immediateLoad) {
+    ['jquery', 'underscore', 'mainpage', 'authorIndex', 'literaryForm', 'genre', 'book', 'bookSeries', 'author'],
+    function ($, _, MainPage, AuthorIndex, LiteraryForm, Genre, Book, BookSeries, Author) {
+
+        function SamLib(mainPageUrl, immediateLoad) {
             mainPageUrl = _(mainPageUrl).isUndefined() ? 'http://samlib.ru' : _(mainPageUrl).trim('/');
             immediateLoad = _(immediateLoad).isUndefined() ? true : immediateLoad;
 
-            var mainpage = MainPage(mainPageUrl, immediateLoad);
-
-            var result = {
-                mainpage: mainpage,
-                ready: mainpage.ready,
-                _info: {},
-
-                load: function () {
-                    mainpage.load();
-                },
-
-                normalizeUrl: function(url){
-                    if (!_(url).startsWith(mainPageUrl)) {
-                        if (_(url).startsWith('/')) {
-                            url = mainPageUrl + url;
-                        } else {
-                            url = mainPageUrl + '/' + url;
-                        }
-                    }
-                    return url;
-                },
-
-                determinePageTypeByUrl: function (url) {
-                    url = this.normalizeUrl(url);
-                    if (!_(url).startsWith(mainPageUrl)) {
-                        return 'unknown';
-                    };
-
-                    //Mainpage
-                    if (url === mainPageUrl || url === mainPageUrl+'/') {
-                        return 'mainpage';
-                    };
-
-                    //AuthorIndex
-                    var isAuthorIndex = _(this.mainpage.info().authorIndexes).find({url: url});
-                    if (isAuthorIndex) {
-                        return 'authorIndex';
-                    };
-
-                    //Genres
-                    var re = new RegExp('^'+mainPageUrl+'/janr/index_janr_[\\d]+?-[\\d]+?.shtml$');
-                    if (re.test(url)) {
-                        return 'genre';
-                    };
-
-                    //Literary forms
-                    var re = new RegExp('^'+mainPageUrl+'/type/index_type_[\\d]+?-[\\d]+?.shtml$');
-                    if (re.test(url)) {
-                        return 'literaryForm';
-                    };
-
-                    //Authors
-                    var re = new RegExp('^'+mainPageUrl+'/[^/]+?/[^/]+?/(|index\\.shtml)$');
-                    if (re.test(url)) {
-                        return 'author';
-                    };
-
-                    //BookSerie
-                    var re = new RegExp('^'+mainPageUrl+'/[^/]+?/[^/]+?/index_[\\d]+?\\.shtml$');
-                    if (re.test(url)) {
-                        return 'bookSerie';
-                    };
-
-                    //Book
-                    var re = new RegExp('^'+mainPageUrl+'/[^/]+?/[^/]+?/[^/]+?\\.shtml$');
-                    if (re.test(url)) {
-                        return 'book';
-                    };
-
-                    return 'unknown';
-                },
-
-                info: function (data, replace) {
-                    data = data || false;
-                    if (data) {
-                        replace = replace || false;
-                        if (replace) {
-                            this._info = data;
-                        } else {
-                            _.extend(this._info, data);
-                        }
-                    }
-                    return this._info;
-                }
+            this._info = {};
+            this.pages = {
+                MainPage: MainPage,
+                AuthorIndex: AuthorIndex,
+                LiteraryForm: LiteraryForm,
+                Genre: Genre,
+                Book: Book,
+                BookSeries: BookSeries,
+                Author: Author
             };
 
-            return result;
+            this.mainpage = new MainPage(mainPageUrl, immediateLoad);
+            this.ready = this.mainpage.ready;
+            this.url = this.mainpage.url;
+        }
+
+        var result = {
+
+            load: function () {
+                this.mainpage.load();
+            },
+
+            normalizeUrl: function (url) {
+                if (!_(url).startsWith(this.url)) {
+                    if (_(url).startsWith('/')) {
+                        url = this.url + url;
+                    } else {
+                        url = this.url + '/' + url;
+                    }
+                }
+                return url;
+            },
+
+            getPageObject: function (url, immediateLoad) {
+                immediateLoad = _(immediateLoad).isUndefined() ? true : immediateLoad;
+                var result = {
+                    type: this.determinePageTypeByUrl(url)
+                }
+                if (result.type !== 'Unknown') {
+                    result.page = new (this.pages[result.type])(url, immediateLoad);
+                }
+                return result;
+            },
+
+            determinePageTypeByUrl: function (url) {
+                url = this.normalizeUrl(url);
+                if (!_(url).startsWith(this.url)) {
+                    return 'Unknown';
+                }
+
+                //Mainpage
+                if (url === this.url || url === this.url + '/') {
+                    return 'MainPage';
+                }
+
+                //AuthorIndex
+                var isAuthorIndex = _(this.mainpage.info().authorIndexes).find({url: url});
+                if (isAuthorIndex) {
+                    return 'AuthorIndex';
+                }
+
+                //Genres
+                var re = new RegExp('^' + this.url + '/janr/index_janr_[\\d]+?-[\\d]+?.shtml$');
+                if (re.test(url)) {
+                    return 'Genre';
+                }
+
+                //Literary forms
+                var re = new RegExp('^' + this.url + '/type/index_type_[\\d]+?-[\\d]+?.shtml$');
+                if (re.test(url)) {
+                    return 'LiteraryForm';
+                }
+
+                //Authors
+                var re = new RegExp('^' + this.url + '/[^/]+?/[^/]+?/(|index\\.shtml)$');
+                if (re.test(url)) {
+                    return 'Author';
+                }
+
+                //BookSerie
+                var re = new RegExp('^' + this.url + '/[^/]+?/[^/]+?/index_[\\d]+?\\.shtml$');
+                if (re.test(url)) {
+                    return 'BookSeries';
+                }
+
+                //Book
+                var re = new RegExp('^' + this.url + '/[^/]+?/[^/]+?/[^/]+?\\.shtml$');
+                if (re.test(url)) {
+                    return 'Book';
+                }
+
+                return 'Unknown';
+            },
+
+            info: function (data, replace) {
+                data = data || false;
+                if (data) {
+                    replace = replace || false;
+                    if (replace) {
+                        this._info = data;
+                    } else {
+                        _.extend(this._info, data);
+                    }
+                }
+                return this._info;
+            }
         };
+
+        _.extend(SamLib.prototype, result);
+
+        return SamLib;
     }
 );

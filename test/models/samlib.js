@@ -1,18 +1,19 @@
 define(['samlib', "underscore"], function (Samlib, _) {
     var facade = new Samlib('fixtures/mainpage.html');
     window.f = facade;
+
     facade.ready.done(function () {
         describe("Samlib facade tests", function () {
 
             describe("Page type detection", function () {
 
                 var pageTypes = {
-                    "unknown": [
+                    "Unknown": [
                         'http://lol.com',
                         'asdasdasdsad'
                     ],
-                    "mainpage": ['fixtures/mainpage.html', 'fixtures/mainpage.html/'],
-                    "authorIndex": [
+                    "MainPage": ['fixtures/mainpage.html', 'fixtures/mainpage.html/'],
+                    "AuthorIndex": [
                         "fixtures/mainpage.html/s/index_s.shtml",
                         "fixtures/mainpage.html/i/",
                         "fixtures/mainpage.html/7/index_7.shtml",
@@ -20,29 +21,29 @@ define(['samlib', "underscore"], function (Samlib, _) {
                         "fixtures/mainpage.html/f/",
                         "fixtures/mainpage.html/s/index_sw.shtml"
                     ],
-                    "genre": [
+                    "Genre": [
                         "fixtures/mainpage.html/janr/index_janr_5-1.shtml",
                         "fixtures/mainpage.html/janr/index_janr_5-13.shtml",
                         "fixtures/mainpage.html/janr/index_janr_15-1.shtml",
                         "fixtures/mainpage.html/janr/index_janr_11-1.shtml"
                     ],
-                    "literaryForm": [
+                    "LiteraryForm": [
                         "fixtures/mainpage.html/type/index_type_16-1.shtml",
                         "fixtures/mainpage.html/type/index_type_5-1.shtml",
                         "fixtures/mainpage.html/type/index_type_16-11.shtml"
                     ],
-                    "author": [
+                    "Author": [
                         "fixtures/mainpage.html/e/egoist/",
                         "fixtures/mainpage.html/z/z_n/",
                         "fixtures/mainpage.html/5/56/",
                         "fixtures/mainpage.html/m/magnitostroew_e_e/",
                         "fixtures/mainpage.html/m/magnitostroew_e_e/index.shtml"
                     ],
-                    "bookSerie": [
+                    "BookSeries": [
                         "fixtures/mainpage.html/g/gozalishwili_w_t/index_1.shtml",
                         "fixtures/mainpage.html/a/androsenko_a_d/index_4.shtml"
                     ],
-                    "book": [
+                    "Book": [
                         "fixtures/mainpage.html/a/anashkin_dmitrij_wladimirowich/1glava.shtml",
                         "fixtures/mainpage.html/l/lelxchuk_z/sobakineumirayut.shtml",
                         "fixtures/mainpage.html/a/ashurow_n_p/a-070412.shtml",
@@ -52,17 +53,20 @@ define(['samlib', "underscore"], function (Samlib, _) {
 
                 _(pageTypes).each(function (urls, pageType) {
                     it("Should be able to determine pages: " + pageType, function (done) {
-
                         _(urls).each(function (url) {
                             expect(facade.determinePageTypeByUrl(url)).to.be.equal(pageType);
+                            expect(facade.getPageObject(url, false).page).to.be.object;
+                            if (pageType != 'Unknown'){
+                                expect(facade.getPageObject(url, false).page).to.be.an.instanceof(facade.pages[pageType]);
+                            }
                         });
                         done();
-
                     })
                 });
 
             });
         });
+
 
 
     });

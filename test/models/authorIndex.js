@@ -3,12 +3,12 @@ define(['authorIndex', "underscore"], function (AuthorIndex, _) {
     describe("AuthorIndex tests", function () {
 
         it("Can be lazily created", function () {
-            var book = AuthorIndex('fixtures/authorIndex_a.html', false);
+            var book = new AuthorIndex('fixtures/authorIndex_a.html', false);
             expect(book.ready.state()).to.be.equal('pending');
         })
 
         it('Could have different custom properties', function () {
-            var authorIndex = AuthorIndex('fixtures/book_series.html', false);
+            var authorIndex = new AuthorIndex('fixtures/book_series.html', false);
             expect(authorIndex.info()).not.to.have.property('test');
             authorIndex.info({test: "Hello"});
             expect(authorIndex.info().test).to.be.equal('Hello');
@@ -27,18 +27,15 @@ define(['authorIndex', "underscore"], function (AuthorIndex, _) {
         };
 
         _(tests).each(function (shouldBe, fixtureUrl) {
-
-            describe("Tests with " + fixtureUrl + " fixture", function () {
-
-                it("Should parse author index pages", function (done) {
-                    var authorIndex = AuthorIndex(fixtureUrl);
-                    authorIndex.ready.done(function () {
+            var authorIndex = new AuthorIndex(fixtureUrl);
+            authorIndex.ready.done(function () {
+                describe("Tests with " + fixtureUrl + " fixture", function () {
+                    it("Should parse author index pages", function (done) {
                         expect(authorIndex.info().authors).to.have.length(shouldBe.authorCount);
                         done();
                     });
-                });
-
-            })
+                })
+            });
 
         });
 

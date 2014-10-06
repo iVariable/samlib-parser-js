@@ -2,7 +2,6 @@ requirejs.config({
     baseUrl: "../src/",
     paths: {
         'test': '../test',
-        'test_pregs': '../test/pregs',
         'bower': '../bower_components/',
         'jquery': "../bower_components/jquery/dist/jquery",
         'underscore': "../bower_components/underscore/underscore",

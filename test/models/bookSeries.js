@@ -6,12 +6,12 @@ define(['bookSeries'], function (BookSeries) {
     describe("BookSeries model tests", function () {
 
         it("Can be lazily created", function () {
-            var bookSeries = BookSeries('fixtures/book_series.html', false);
+            var bookSeries = new BookSeries('fixtures/book_series.html', false);
             expect(bookSeries.ready.state()).to.be.equal('pending');
         })
 
         it('Could have different custom properties', function () {
-            var bookSeries = BookSeries('fixtures/book_series.html', false);
+            var bookSeries = new BookSeries('fixtures/book_series.html', false);
             expect(bookSeries.info()).not.to.have.property('test');
             bookSeries.info({test: "Hello"});
             expect(bookSeries.info().test).to.be.equal('Hello');
@@ -23,9 +23,11 @@ define(['bookSeries'], function (BookSeries) {
             expect(bookSeries.info()).not.to.have.property('test2');
         });
 
+
         it("Should correctly parse general information", function (done) {
-            var bookSeries = BookSeries('fixtures/book_series.html');
+            var bookSeries = new BookSeries('fixtures/book_series.html');
             bookSeries.ready.done(function () {
+
                 var shouldBe = {
                     authorName: "Горъ Василий",
                     title: "Пророчество",
@@ -89,8 +91,8 @@ define(['bookSeries'], function (BookSeries) {
 
                 var _books = _(info.books);
 
-                _(shouldBe.books).each(function(info, url){
-                    var book = _books.find(function(book){
+                _(shouldBe.books).each(function (info, url) {
+                    var book = _books.find(function (book) {
                         return book.url.indexOf(url) !== -1;
                     });
 
@@ -101,9 +103,9 @@ define(['bookSeries'], function (BookSeries) {
                     expect(book.info().genres).to.have.members(info.genres);
                     expect(book.info().annotation).to.be.equal(info.annotation);
                 });
-
-                done();
             });
+
+            done();
         })
 
     })
