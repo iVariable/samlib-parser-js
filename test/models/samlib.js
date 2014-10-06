@@ -55,7 +55,6 @@ define(['samlib', "underscore"], function (Samlib, _) {
                     it("Should be able to determine pages: " + pageType, function (done) {
                         _(urls).each(function (url) {
                             expect(facade.determinePageTypeByUrl(url)).to.be.equal(pageType);
-                            expect(facade.getPageObject(url, false).page).to.be.object;
                             if (pageType != 'Unknown'){
                                 expect(facade.getPageObject(url, false).page).to.be.an.instanceof(facade.pages[pageType]);
                             }
