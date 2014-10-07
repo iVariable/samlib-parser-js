@@ -37,7 +37,9 @@ define(['samlib', "underscore"], function (Samlib, _) {
                         "fixtures/mainpage.html/z/z_n/",
                         "fixtures/mainpage.html/5/56/",
                         "fixtures/mainpage.html/m/magnitostroew_e_e/",
-                        "fixtures/mainpage.html/m/magnitostroew_e_e/index.shtml"
+                        "fixtures/mainpage.html/m/magnitostroew_e_e/index.shtml",
+                        "fixtures/mainpage.html/5/56/indexdate.shtml",
+                        "fixtures/mainpage.html/5/56/indexvote.shtml"
                     ],
                     "BookSeries": [
                         "fixtures/mainpage.html/g/gozalishwili_w_t/index_1.shtml",

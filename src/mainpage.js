@@ -21,6 +21,7 @@ define(
 
             load: function () {
                 var _this = this;
+                this.ready = $.Deferred();
                 $.get(_this.url).done(function (resultAsString, result, xhr) {
                     _this.parse(resultAsString);
                 }).fail(function (xhr) {

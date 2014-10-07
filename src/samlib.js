@@ -82,7 +82,7 @@ define(
                 }
 
                 //Authors
-                var re = new RegExp('^' + this.url + '/[^/]+?/[^/]+?/(|index\\.shtml)$');
+                var re = new RegExp('^' + this.url + '/[^/]+?/[^/]+?/(|index\\.shtml|indexvote\\.shtml|indexdate\\.shtml)$');
                 if (re.test(url)) {
                     return 'Author';
                 }
