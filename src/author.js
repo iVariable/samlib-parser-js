@@ -48,6 +48,7 @@ define(['jquery', 'bookSeries', 'underscore'], function ($, BookSeries, _) {
                 throw Error("Incorrect author page! [" + this.url + "]");
             }
             this._info.name = authorInfo[1];
+            this._info.title = authorInfo[1];
             this._info.description = authorInfo[2];
 
             var generalInfoRe = /<li><b><a href=\/long.shtml><font color=#393939>Обновлялось:<\/font><\/a><\/b> ([\d]{2}\/[\d]{2}\/[\d]{4})[^]+?<li><b><a href=\/rating\/size\/><font color=#393939>Об[ъь]ем:<\/font><\/a><\/b> ([\d]*?)k\/([\d]*?)\s/gi;
@@ -71,7 +72,7 @@ define(['jquery', 'bookSeries', 'underscore'], function ($, BookSeries, _) {
             books.replace(bookSeriesRe, function (match, booksTitle, delimiter, unfilteredBooks) {
                 var info = match.match(bookInfoRe);
                 var separatePage = false;
-                var url = '';
+                var url = _this.url;
                 if (info) {
                     booksTitle = info[2];
                     if (info[1].indexOf('/type/') !== -1) {

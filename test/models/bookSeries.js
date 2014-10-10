@@ -36,43 +36,43 @@ define(['bookSeries'], function (BookSeries) {
 И однажды, доверчиво вложив ладошку в ладонь, привычную к мечу, она сделала первый шаг в жизнь, в которой, кроме Счастья и Любви, ее ждали и смерти близких, и интриги Империи Ордена Алого Топора, и Твари из иного мира…\
 ",
                     books: {
-                        'prorochestwo.shtml': {
+                        'fixtures/prorochestwo.shtml': {
                             'title': 'Пророчество',
                             'size': '687',
                             'genres': ['Фантастика', 'Фэнтези'],
                             'annotation': 'Издано.'
                         },
-                        'prorochestwo-7.shtml': {
+                        'fixtures/prorochestwo-7.shtml': {
                             'title': 'Пророчество-7. "Джокер для Паука"...',
                             'size': '688',
                             'genres': ['Фантастика', 'Фэнтези'],
                             'annotation': 'Издано)'
                         },
-                        'prorochestwochastx5.shtml': {
+                        'fixtures/prorochestwochastx5.shtml': {
                             'title': 'Пророчество-5. "Чужая кровь"',
                             'size': '651',
                             'genres': ['Фантастика', 'Фэнтези'],
                             'annotation': 'Издано.'
                         },
-                        'prorochestwochastx6glawa1.shtml': {
+                        'fixtures/prorochestwochastx6glawa1.shtml': {
                             'title': 'Пророчество-6. "Каменный клинок"',
                             'size': '687',
                             'genres': ['Фантастика', 'Фэнтези'],
                             'annotation': 'Издано.'
                         },
-                        'prorochestwochastxchetwertaja.shtml': {
+                        'fixtures/prorochestwochastxchetwertaja.shtml': {
                             'title': 'Пророчество-4. "Аз воздам"',
                             'size': '655',
                             'genres': ['Фантастика', 'Фэнтези'],
                             'annotation': 'Издано'
                         },
-                        'prorochestwochastxtretxja.shtml': {
+                        'fixtures/prorochestwochastxtretxja.shtml': {
                             'title': 'Пророчество-3. "Понять пророка".',
                             'size': '567',
                             'genres': ['Фантастика', 'Фэнтези'],
                             'annotation': 'Издано'
                         },
-                        'prorochestwochastxwtoraja.shtml': {
+                        'fixtures/prorochestwochastxwtoraja.shtml': {
                             'title': 'Пророчество-2. "Враг моего врага"',
                             'size': '616',
                             'genres': ['Фантастика', 'Фэнтези'],

@@ -30,6 +30,12 @@ define(['jquery', 'underscore', 'book'], function ($, _, Book) {
             var _this = this;
             this.pageContent = pageContent;
 
+            var rootUrl = this.url;
+            if (rootUrl[rootUrl.length - 1] != '/') {
+                rootUrl = rootUrl.split('/');
+                rootUrl.pop();
+                rootUrl = rootUrl.join('/');
+            }
             if (this.info().separatePage) {
                 var annotationRe = /<small><b>Аннотация<\/b>: <i>([^]+?)<\/i>/ig;
                 var annotation = annotationRe.exec(pageContent);
@@ -63,7 +69,7 @@ define(['jquery', 'underscore', 'book'], function ($, _, Book) {
             var books = [];
             var booksRe = /<DL><DT><li>[^]*?<A HREF=([^]+?)><b>([^]+?)<\/b><\/A> &nbsp; <b>([\d]+?)k<\/b>[^]+?<small>(Оценка:[^]+?&nbsp;([^]+?)|([^]+?))(<A|<\/s)([^]+?)(<DD><font color="#555555">([^]+?)<\/font>[^]+?|)<\/DL>/ig;
             allBooks.replace(booksRe, function (match, link, title, size, genre1, genre2, n, n2, n3, n4, annotation) {
-                link = _this.url + "/" + link;
+                link = rootUrl + "/" + link;
 
                 var genre = _(genre2).isUndefined() ? genre1 : genre2;
                 var book = new Book(link, false);
