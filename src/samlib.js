@@ -38,7 +38,7 @@ define(
                         url = this.url + '/' + url;
                     }
                 }
-                return url.replace(/[\/]{2,}/gi,'/');
+                return url.replace(/[\/]{2,}/gi,'/').replace('http:/', 'http://');
             },
 
             getPageObject: function (url, immediateLoad) {
