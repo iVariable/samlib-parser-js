@@ -19,16 +19,21 @@ define(['samlib', "underscore"], function (Samlib, _) {
                         "fixtures/mainpage.html/7/index_7.shtml",
                         "fixtures/mainpage.html/k/index_k.shtml",
                         "fixtures/mainpage.html/f/",
-                        "fixtures/mainpage.html/s/index_sw.shtml"
+                        "fixtures/mainpage.html/s/index_sw.shtml",
+                        "fixtures/mainpage.html/s///index_sw.shtml",
+                        "fixtures/mainpage.html/s//index_sw.shtml"
                     ],
                     "Genre": [
                         "fixtures/mainpage.html/janr/index_janr_5-1.shtml",
                         "fixtures/mainpage.html/janr/index_janr_5-13.shtml",
                         "fixtures/mainpage.html/janr/index_janr_15-1.shtml",
+                        "fixtures/mainpage.html/janr//index_janr_15-1.shtml",
                         "fixtures/mainpage.html/janr/index_janr_11-1.shtml"
                     ],
                     "LiteraryForm": [
                         "fixtures/mainpage.html/type/index_type_16-1.shtml",
+                        "fixtures/mainpage.html/type/index_type_16-1.shtml",
+                        "fixtures/mainpage.html//type///index_type_16-1.shtml",
                         "fixtures/mainpage.html/type/index_type_5-1.shtml",
                         "fixtures/mainpage.html/type/index_type_16-11.shtml"
                     ],
@@ -47,9 +52,12 @@ define(['samlib', "underscore"], function (Samlib, _) {
                     ],
                     "Book": [
                         "fixtures/mainpage.html/a/anashkin_dmitrij_wladimirowich/1glava.shtml",
-                        "fixtures/mainpage.html/l/lelxchuk_z/sobakineumirayut.shtml",
+                        "fixtures/mainpage.html//l/lelxchuk_z/sobakineumirayut.shtml",
+                        "fixtures/mainpage.html/l/lelxchuk_z///sobakineumirayut.shtml",
+                        "fixtures/mainpage.html/l//lelxchuk_z/////sobakineumirayut.shtml",
                         "fixtures/mainpage.html/a/ashurow_n_p/a-070412.shtml",
-                        "fixtures/mainpage.html/g/gozalishwili_w_t/graf-2pokabeznazwanija.shtml"
+                        "fixtures/mainpage.html/g/gozalishwili_w_t/graf-2pokabeznazwanija.shtml",
+                        "fixtures/mainpage.html/i/iwanow_w_g/ivg2002-3.shtml"
                     ]
                 }
 

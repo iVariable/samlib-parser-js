@@ -38,7 +38,7 @@ define(
                         url = this.url + '/' + url;
                     }
                 }
-                return url;
+                return url.replace(/[\/]{2,}/gi,'/');
             },
 
             getPageObject: function (url, immediateLoad) {
