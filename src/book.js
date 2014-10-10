@@ -30,6 +30,8 @@ define(['jquery', 'underscore'], function ($, _) {
             this.pageContent = pageContent;
 
             var re = {
+                authorName: /<div align=right><h3>([^]+?): <small>/gi,
+                authorUrl: /<div align=right><h3>[^]+?: <small><a href=([^]+?)>/gi,
                 title: /<center><h2>([^]+?)<\/h2>[^]+?<!------- Первый блок ссылок ------------->/gi,
                 literaryForm: /<li><a href=\/type\/[^]+?>([^]+?)<\/a>/gi,
                 content: /<!----------- Собственно произведение --------------->([^]+?)<!--------------------------------------------------->/gi,
@@ -42,7 +44,7 @@ define(['jquery', 'underscore'], function ($, _) {
                 var match = re.exec(pageContent);
                 if (match) {
                     var info = {};
-                    info[title] = match[1];
+                    info[title] = _.trim(match[1]);
                     _this.info(info);
                 }
             });

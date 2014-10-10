@@ -25,16 +25,20 @@ define(['book', "underscore"], function (Book, _) {
 
         var tests = {
             "fixtures/book_small.html": {
+                authorName: "Маханенко Василий Михайлович",
+                authorUrl: "/m/mahanenko_w_m/",
                 title: "Подписка на 6-го Шамана",
-                contentLength: 8026,
+                contentLength: 8023,
                 literaryForm: "Глава",
                 genre: "Фэнтези",
                 description: "Информация о подписке на 6-го Шамана. Прошу обратить внимание -- текст начнет писаться не ранее августа, так что решайте сами, когда хотите присоедениться к проекту.",
                 group: "Мир Барлионы"
             },
             "fixtures/book_big.html": {
+                authorName: "Маханенко Василий Михайлович",
+                authorUrl: "/m/mahanenko_w_m/",
                 title: "Путь Шамана. Шаг 1: Начало",
-                contentLength: 567629,
+                contentLength: 567613,
                 literaryForm: "Роман",
                 genre: "Фэнтези",
                 description: 'Первая книга про жизнь Шамана в Барлионе (Май 2013 года).  <dd> Приобрести бумажную книгу можно   <a href="http://www.labirint.ru/books/390127/">http://www.labirint.ru/books/390127/</a>  <dd> Электронный вариант книги: <a href="http://www.litres.ru/vasiliy-mahanenko/barliona/">Магазин электронных книги Литрес</a>',
@@ -49,6 +53,8 @@ define(['book', "underscore"], function (Book, _) {
                     var book = new Book(fixtureUrl);
                     book.ready.done(function () {
                         expect(book.info().title).to.be.equal(shouldBe.title);
+                        expect(book.info().authorName).to.be.equal(shouldBe.authorName);
+                        expect(book.info().authorUrl).to.be.equal(shouldBe.authorUrl);
                         expect(book.info().description).to.be.equal(shouldBe.description);
                         expect(book.info().literaryForm).to.be.equal(shouldBe.literaryForm);
                         expect(book.info().genre).to.be.equal(shouldBe.genre);
